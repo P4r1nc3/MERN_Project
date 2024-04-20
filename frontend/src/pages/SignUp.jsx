@@ -1,20 +1,22 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { toast, ToastContainer } from 'react-toastify';
 
 export default function SignUp() {
   const [formData, setFormData] = useState({});
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
+    setError(false);
     try {
-      setLoading(true);
-      setError(false);
       const res = await fetch('/api/auth/signup', {
         method: 'POST',
         headers: {
@@ -23,18 +25,21 @@ export default function SignUp() {
         body: JSON.stringify(formData),
       });
       const data = await res.json();
-      console.log(data);
       setLoading(false);
       if (data.success === false) {
         setError(true);
+        toast.error('Error signing up: ' + (data.message || 'Please check your details and try again.'));
         return;
       }
+      toast.success('Successfully signed up! Please sign in.');
       navigate('/sign-in');
     } catch (error) {
       setLoading(false);
       setError(true);
+      toast.error('Network error, please try again later.');
     }
   };
+
   return (
     <div className='p-3 max-w-lg mx-auto'>
       <h1 className='text-3xl text-center font-semibold my-7'>Sign Up</h1>
@@ -73,7 +78,7 @@ export default function SignUp() {
           <span className='text-blue-500'>Sign in</span>
         </Link>
       </div>
-      <p className='text-red-700 mt-5'>{error && 'Something went wrong!'}</p>
+      <ToastContainer position="bottom-right" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover />
     </div>
   );
 }
