@@ -1,15 +1,11 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import {
-  signInStart,
-  signInSuccess,
-  signInFailure,
-} from '../redux/user/userSlice';
+import { signInStart, signInSuccess, signInFailure } from '../redux/user/userSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast, ToastContainer } from 'react-toastify';
 
 export default function SignIn() {
-  const [formData, setFormData] = useState({});
+  const [formData, setFormData] = useState({ email: '', password: '' });
   const { loading, error } = useSelector((state) => state.user);
 
   const navigate = useNavigate();
@@ -31,7 +27,7 @@ export default function SignIn() {
         body: JSON.stringify(formData),
       });
       const data = await res.json();
-      if (data.success === false) {
+      if (!data.success) {
         dispatch(signInFailure(data));
         toast.error(data.message || 'Something went wrong!');
         return;
@@ -45,37 +41,52 @@ export default function SignIn() {
   };
 
   return (
-    <div className='p-3 max-w-lg mx-auto'>
-      <h1 className='text-3xl text-center font-semibold my-7'>Sign In</h1>
-      <form onSubmit={handleSubmit} className='flex flex-col gap-4'>
-        <input
-          type='email'
-          placeholder='Email'
-          id='email'
-          className='bg-slate-100 p-3 rounded-lg'
-          onChange={handleChange}
-        />
-        <input
-          type='password'
-          placeholder='Password'
-          id='password'
-          className='bg-slate-100 p-3 rounded-lg'
-          onChange={handleChange}
-        />
-        <button
-          disabled={loading}
-          className='bg-slate-700 text-white p-3 rounded-lg uppercase hover:opacity-95 disabled:opacity-80'
-        >
-          {loading ? 'Loading...' : 'Sign In'}
-        </button>
-      </form>
-      <div className='flex gap-2 mt-5'>
-        <p>Dont Have an account?</p>
-        <Link to='/sign-up'>
-          <span className='text-blue-500'>Sign up</span>
-        </Link>
-      </div>
-      <ToastContainer position="top-center" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover />
-    </div>
+      <section>
+        <ToastContainer position="bottom-right" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover />
+        <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0" style={{ maxHeight: 'calc(100vh - 60px)' }}>
+          <div className="w-full bg-white rounded-lg shadow border md:mt-0 sm:max-w-md xl:p-0">
+            <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
+              <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl">
+                Sign In
+              </h1>
+              <form className="space-y-4 md:space-y-6" onSubmit={handleSubmit}>
+                <div>
+                  <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900">Email</label>
+                  <input
+                      type="email"
+                      id="email"
+                      className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                      placeholder="name@example.com"
+                      required
+                      value={formData.email}
+                      onChange={handleChange}
+                  />
+                </div>
+                <div>
+                  <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900">Password</label>
+                  <input
+                      type="password"
+                      id="password"
+                      className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                      placeholder="Password"
+                      required
+                      value={formData.password}
+                      onChange={handleChange}
+                  />
+                </div>
+                <button
+                    type="submit"
+                    disabled={loading}
+                    className="w-full text-white bg-blue-400 hover:bg-blue-500 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+                  {loading ? 'Loading...' : 'Sign In'}
+                </button>
+                <p className="text-sm font-light text-gray-500">
+                  Don't have an account? <Link to="/sign-up" className="font-medium text-blue-600 hover:underline">Sign up here</Link>
+                </p>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
   );
 }
