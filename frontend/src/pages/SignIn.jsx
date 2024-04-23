@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { toast, ToastContainer } from 'react-toastify';
 
 export default function SignIn() {
-  const [formData, setFormData] = useState({ email: '', password: '' });
+  const [formData, setFormData] = useState({});
   const { loading, error } = useSelector((state) => state.user);
 
   const navigate = useNavigate();
@@ -27,7 +27,7 @@ export default function SignIn() {
         body: JSON.stringify(formData),
       });
       const data = await res.json();
-      if (!data.success) {
+      if (data.success === false) {
         dispatch(signInFailure(data));
         toast.error(data.message || 'Something went wrong!');
         return;
