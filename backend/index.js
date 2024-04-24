@@ -1,6 +1,7 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
+import taskRoutes from './routes/task.route.js';
 import userRoutes from './routes/user.route.js';
 import authRoutes from './routes/auth.route.js';
 import cookieParser from 'cookie-parser';
@@ -22,10 +23,6 @@ const app = express();
 
 app.use(express.static(path.join(__dirname, '/frontend/dist')));
 
-app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'frontend', 'dist', 'index.html'));
-});
-
 app.use(express.json());
 
 app.use(cookieParser());
@@ -34,6 +31,7 @@ app.listen(3000, () => {
     console.log('Server listening on port 3000');
 });
 
+app.use('/api/tasks',taskRoutes);
 app.use('/api/user', userRoutes);
 app.use('/api/auth', authRoutes);
 
