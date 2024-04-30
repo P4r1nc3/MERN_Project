@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import React from "react";
 
 export default function Header() {
   const { currentUser } = useSelector((state) => state.user);
@@ -7,7 +8,7 @@ export default function Header() {
     <div className='bg-white shadow'>
       <div className='flex justify-between items-center max-w-6xl mx-auto px-6 py-3'>
         <Link to='/' className='text-gray-900'>
-          <h1 className='text-xl font-bold'>TODO</h1>
+          <h1 className='text-xl font-bold'><span className="text-blue-500">Task</span>Master</h1>
         </Link>
         <ul className='flex gap-4'>
           <Link to='/' className='text-gray-900 hover:text-blue-500'>
