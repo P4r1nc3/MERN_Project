@@ -104,15 +104,17 @@ const Tasks = () => {
             <div className="text-center mb-4">
                 <h1 className="text-3xl font-bold">Tasks</h1>
             </div>
-            <div className="flex justify-center mb-4">
-                <input
-                    type="text"
-                    placeholder="Search tasks"
-                    value={searchTerm}
-                    onChange={e => setSearchTerm(e.target.value)}
-                    className="border border-gray-300 rounded-md px-2 py-1 mb-2 sm:mb-0 sm:mr-4"
-                />
-                <div className="mb-2 sm:mb-0 sm:mr-4">
+            <div className="flex flex-wrap gap-2 justify-center">
+                <div>
+                    <input
+                        type="text"
+                        placeholder="Search tasks"
+                        value={searchTerm}
+                        onChange={e => setSearchTerm(e.target.value)}
+                        className="border border-gray-300 rounded-md px-2 py-1 w-60 h-10"
+                    />
+                </div>
+                <div>
                     <DatePicker
                         selected={startDate}
                         onChange={date => setStartDate(date)}
@@ -120,10 +122,10 @@ const Tasks = () => {
                         startDate={startDate}
                         endDate={endDate}
                         placeholderText="From Date"
-                        className="border border-gray-300 rounded-md px-2 py-1 w-60"
+                        className="border border-gray-300 rounded-md px-2 py-1 w-60 h-10"
                     />
                 </div>
-                <div className="mb-2 sm:mb-0 sm:mr-4">
+                <div>
                     <DatePicker
                         selected={endDate}
                         onChange={date => setEndDate(date)}
@@ -132,19 +134,21 @@ const Tasks = () => {
                         endDate={endDate}
                         minDate={startDate}
                         placeholderText="To Date"
-                        className="border border-gray-300 rounded-md px-2 py-1 w-60"
+                        className="border border-gray-300 rounded-md px-2 py-1 w-60 h-10"
                     />
                 </div>
-                <select
-                    value={priorityFilter}
-                    onChange={e => setPriorityFilter(e.target.value)}
-                    className="border border-gray-300 rounded-md px-2 py-1 w-60"
-                >
-                    <option value="all">All Priorities</option>
-                    <option value="high">High Priority</option>
-                    <option value="medium">Medium Priority</option>
-                    <option value="low">Low Priority</option>
-                </select>
+                <div>
+                    <select
+                        value={priorityFilter}
+                        onChange={e => setPriorityFilter(e.target.value)}
+                        className="border border-gray-300 rounded-md px-2 py-1 w-60 h-10"
+                    >
+                        <option value="all">All Priorities</option>
+                        <option value="high">High Priority</option>
+                        <option value="medium">Medium Priority</option>
+                        <option value="low">Low Priority</option>
+                    </select>
+                </div>
             </div>
             <div className="flex justify-center mb-4">
                 {searchTerm && (
