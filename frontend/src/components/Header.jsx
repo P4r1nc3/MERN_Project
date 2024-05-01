@@ -10,11 +10,11 @@ export default function Header() {
           <Link to='/' className='text-gray-900'>
             <h1 className='text-xl font-bold'><span className="text-blue-500">Task</span>Master</h1>
           </Link>
-          <ul className='flex gap-4'>
+          <ul className='flex gap-4 items-center'>
             {currentUser ? (
                 <>
                   <Link to='/tasks' className='text-gray-900 hover:text-blue-500'>
-                    <li>Tasks</li>
+                    <li className="flex items-center">Tasks</li>
                   </Link>
                   <Link to='/profile' className='flex items-center'>
                     <li><img src={currentUser.profilePicture} alt='profile' className='h-8 w-8 rounded-full object-cover hover:ring-2 hover:ring-blue-500' /></li>
@@ -22,7 +22,7 @@ export default function Header() {
                 </>
             ) : (
                 <Link to='/sign-in' className='text-gray-900 hover:text-blue-500'>
-                  <li>Sign In</li>
+                  <li className="flex items-center">Sign In</li>
                 </Link>
             )}
           </ul>
