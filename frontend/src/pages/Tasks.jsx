@@ -5,11 +5,17 @@ import { FiEdit } from 'react-icons/fi';
 import { AiOutlineDelete } from 'react-icons/ai';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 
 const Tasks = () => {
     const [tasks, setTasks] = useState([]);
     const [modalOpen, setModalOpen] = useState(false);
     const [currentTask, setCurrentTask] = useState(null);
+    const [searchTerm, setSearchTerm] = useState('');
+    const [priorityFilter, setPriorityFilter] = useState('all');
+    const [startDate, setStartDate] = useState(null);
+    const [endDate, setEndDate] = useState(null);
 
     useEffect(() => {
         axios.get('http://localhost:3000/api/tasks', {
@@ -84,14 +90,64 @@ const Tasks = () => {
         return { formattedDate, isPast };
     };
 
+    const filteredTasks = tasks.filter(task => {
+        if (priorityFilter !== 'all' && task.priority !== priorityFilter) return false;
+        if (startDate && new Date(task.dueTo) < startDate) return false;
+        if (endDate && new Date(task.dueTo) > endDate) return false;
+        if (searchTerm && !task.description.toLowerCase().includes(searchTerm.toLowerCase())) return false;
+        return true;
+    });
+
     return (
         <div className="max-w-screen-lg mx-auto p-4 font-sans">
             <ToastContainer />
             <div className="text-center mb-4">
                 <h1 className="text-2xl font-bold">Tasks</h1>
             </div>
+            <div className="flex justify-center mb-4">
+                <input
+                    type="text"
+                    placeholder="Search tasks"
+                    value={searchTerm}
+                    onChange={e => setSearchTerm(e.target.value)}
+                    className="border border-gray-300 rounded-md px-2 py-1 mr-2"
+                />
+                <select
+                    value={priorityFilter}
+                    onChange={e => setPriorityFilter(e.target.value)}
+                    className="border border-gray-300 rounded-md px-2 py-1 mr-2"
+                >
+                    <option value="all">All Priorities</option>
+                    <option value="high">High Priority</option>
+                    <option value="medium">Medium Priority</option>
+                    <option value="low">Low Priority</option>
+                </select>
+                <div className="mr-2">
+                    <DatePicker
+                        selected={startDate}
+                        onChange={date => setStartDate(date)}
+                        selectsStart
+                        startDate={startDate}
+                        endDate={endDate}
+                        placeholderText="From Date"
+                        className="border border-gray-300 rounded-md px-2 py-1"
+                    />
+                </div>
+                <div>
+                    <DatePicker
+                        selected={endDate}
+                        onChange={date => setEndDate(date)}
+                        selectsEnd
+                        startDate={startDate}
+                        endDate={endDate}
+                        minDate={startDate}
+                        placeholderText="To Date"
+                        className="border border-gray-300 rounded-md px-2 py-1"
+                    />
+                </div>
+            </div>
             <div className="flex flex-wrap gap-4 justify-center">
-                {tasks.map(task => (
+                {filteredTasks.map(task => (
                     <div key={task._id} className="bg-gray-100 text-black p-6 rounded-md w-80 relative shadow-lg hover:shadow-xl transition-shadow duration-300">
                         <h3 className="text-lg font-semibold mb-1 truncate">{task.description}</h3>
                         <p className={`text-sm mb-2 ${formatDate(task.dueTo).isPast ? 'text-red-500' : 'text-gray-600'}`}>{formatDate(task.dueTo).formattedDate}</p>
