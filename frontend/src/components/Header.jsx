@@ -10,7 +10,7 @@ export default function Header() {
           <Link to='/' className='text-gray-900'>
             <h1 className='text-xl font-bold'><span className="text-blue-500">Task</span>Master</h1>
           </Link>
-          <ul className='flex gap-4 items-center'>
+          <ul className='flex gap-4 items-center text-lg'>
             {currentUser ? (
                 <>
                   <Link to='/tasks' className='text-gray-900 hover:text-blue-500'>
