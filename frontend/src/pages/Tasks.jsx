@@ -150,7 +150,7 @@ const Tasks = () => {
                     </select>
                 </div>
             </div>
-            <div className="flex justify-center mb-4">
+            <div className="flex justify-center m-4">
                 {searchTerm && (
                     <span className="inline-block bg-gray-200 text-gray-600 px-2 py-1 rounded-full mr-2">
                         Search: {searchTerm} <button onClick={() => setSearchTerm('')} className="ml-1">&times;</button>
