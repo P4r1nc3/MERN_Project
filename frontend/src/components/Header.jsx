@@ -21,9 +21,14 @@ export default function Header() {
                   </Link>
                 </>
             ) : (
-                <Link to='/sign-in' className='text-gray-900 hover:text-blue-500'>
-                  <li className="flex items-center">Sign In</li>
-                </Link>
+                <>
+                    <Link to='/sign-in' className='text-gray-900 hover:text-blue-500'>
+                      <li className="flex items-center">Sign In</li>
+                    </Link>
+                    <Link to='/sign-up' className='bg-blue-500 text-white rounded-2xl px-3 py-1 hover:bg-blue-400 transition duration-300'>
+                        <li className="flex items-center">Sign Up</li>
+                    </Link>
+                </>
             )}
           </ul>
         </div>
