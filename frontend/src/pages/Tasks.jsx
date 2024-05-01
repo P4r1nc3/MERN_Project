@@ -122,6 +122,7 @@ const Tasks = () => {
                         startDate={startDate}
                         endDate={endDate}
                         placeholderText="From Date"
+                        dateFormat="dd/MM/yyyy"
                         className="border border-gray-300 rounded-md px-2 py-1 w-60 h-10"
                     />
                 </div>
@@ -134,6 +135,7 @@ const Tasks = () => {
                         endDate={endDate}
                         minDate={startDate}
                         placeholderText="To Date"
+                        dateFormat="dd/MM/yyyy"
                         className="border border-gray-300 rounded-md px-2 py-1 w-60 h-10"
                     />
                 </div>
