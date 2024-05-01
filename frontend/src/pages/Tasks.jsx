@@ -74,9 +74,14 @@ const Tasks = () => {
     };
 
     const formatDate = (dateString) => {
-        if (!dateString) return "-";
+        if (!dateString) return { formattedDate: "-", isPast: false };
         const date = new Date(dateString);
-        return `${date.getDate().toString().padStart(2, '0')}/${(date.getMonth() + 1).toString().padStart(2, '0')}/${date.getFullYear()}`;
+        const now = new Date();
+        now.setHours(0, 0, 0, 0);
+        date.setHours(0, 0, 0, 0);
+        const isPast = date < now;
+        const formattedDate = `${date.getDate().toString().padStart(2, '0')}/${(date.getMonth() + 1).toString().padStart(2, '0')}/${date.getFullYear()}`;
+        return { formattedDate, isPast };
     };
 
     return (
@@ -87,9 +92,9 @@ const Tasks = () => {
             </div>
             <div className="flex flex-wrap gap-4 justify-center">
                 {tasks.map(task => (
-                    <div key={task._id} className="h-600 bg-gray-100 text-black p-6 rounded-md w-80 relative shadow-lg hover:shadow-xl transition-shadow duration-300">
+                    <div key={task._id} className="bg-gray-100 text-black p-6 rounded-md w-80 relative shadow-lg hover:shadow-xl transition-shadow duration-300">
                         <h3 className="text-lg font-semibold mb-1 truncate">{task.description}</h3>
-                        <p className="text-sm mb-2 text-gray-600">{formatDate(task.dueTo)}</p>
+                        <p className={`text-sm mb-2 ${formatDate(task.dueTo).isPast ? 'text-red-500' : 'text-gray-600'}`}>{formatDate(task.dueTo).formattedDate}</p>
                         <p className={`text-sm mb-4 font-medium ${task.priority === 'high' ? 'text-red-500' : task.priority === 'medium' ? 'text-yellow-500' : 'text-green-500'}`}>
                             {task.priority}
                         </p>
@@ -99,6 +104,7 @@ const Tasks = () => {
                         </div>
                     </div>
                 ))}
+
                 <div onClick={handleAdd} className="bg-gray-100 text-black p-6 rounded-md w-80 h-36 flex items-center justify-center cursor-pointer border-2 border-dashed border-gray-300 hover:bg-gray-100 shadow-lg hover:shadow-xl transition-shadow duration-300">
                     <span className="text-4xl text-gray-400">+</span>
                 </div>
