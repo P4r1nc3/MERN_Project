@@ -46,7 +46,7 @@ const Tasks = () => {
         const method = task._id ? 'put' : 'post';
         const url = task._id ? `http://localhost:3000/api/tasks/${task._id}` : 'http://localhost:3000/api/tasks/';
 
-        axios[method](url, { description: task.description }, {
+        axios[method](url, task, {
             withCredentials: true
         }).then(response => {
             const message = task._id ? "Task updated successfully." : "Task added successfully.";
@@ -82,7 +82,9 @@ const Tasks = () => {
             <div className="flex flex-wrap gap-4 justify-center">
                 {tasks.map(task => (
                     <div key={task._id} className="bg-gray-200 text-black p-4 rounded-md w-72 relative">
-                        <div className="mb-4">{task.description}</div>
+                        <div className="mb-2">{task.description}</div>
+                        <div className="mb-2">{task.dueTo}</div>
+                        <div className="mb-4">{task.priority}</div>
                         <div className="absolute bottom-4 right-4 flex gap-2">
                             <FiEdit className="cursor-pointer" onClick={() => handleEdit(task)} />
                             <AiOutlineDelete className="cursor-pointer" onClick={() => handleDelete(task._id)} />
