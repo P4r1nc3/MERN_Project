@@ -91,7 +91,7 @@ const Tasks = () => {
                         </div>
                     </div>
                 ))}
-                <div onClick={handleAdd} className="bg-gray-100 text-gray-400 p-4 rounded-md w-72 flex items-center justify-center cursor-pointer border-2 border-dashed border-gray-300 hover:bg-gray-200">
+                <div onClick={handleAdd} className="text-gray-400 p-4 rounded-md w-72 flex items-center justify-center cursor-pointer border-2 border-dashed border-gray-300 hover:bg-gray-100">
                     <span className="text-4xl">+</span>
                 </div>
             </div>
