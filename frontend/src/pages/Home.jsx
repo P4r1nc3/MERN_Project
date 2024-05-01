@@ -3,7 +3,7 @@ import landingImage from '../assets/landing.jpg';
 
 export default function Home() {
     return (
-        <section className="py-5">
+        <section className="py-5" style={{ maxHeight: 'calc(100vh - 60px)' }}>
             <div className="container mx-auto px-4 sm:px-6 lg:px-8 my-5 max-w-screen-xl">
                 <div className="flex flex-col lg:flex-row items-center">
                     <div className="lg:w-1/2">
