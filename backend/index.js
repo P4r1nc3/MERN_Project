@@ -1,4 +1,5 @@
 import express from 'express';
+import cors from 'cors';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import taskRoutes from './routes/task.route.js';
@@ -22,6 +23,11 @@ const __dirname = path.resolve();
 const app = express();
 
 app.use(express.static(path.join(__dirname, '/frontend/dist')));
+
+app.use(cors({
+    origin: 'http://127.0.0.1:5173',
+    credentials: true
+}));
 
 app.use(express.json());
 
