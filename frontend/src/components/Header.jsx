@@ -5,27 +5,34 @@ import React from "react";
 export default function Header() {
   const { currentUser } = useSelector((state) => state.user);
   return (
-    <div className='bg-white shadow'>
-      <div className='flex justify-between items-center max-w-6xl mx-auto px-6 py-3'>
-        <Link to='/' className='text-gray-900'>
-          <h1 className='text-xl font-bold'><span className="text-blue-500">Task</span>Master</h1>
-        </Link>
-        <ul className='flex gap-4'>
-          <Link to='/' className='text-gray-900 hover:text-blue-500'>
-            <li>Home</li>
+      <div className='bg-white shadow'>
+        <div className='flex justify-between items-center max-w-6xl mx-auto px-6 py-3'>
+          <Link to='/' className='text-gray-900'>
+            <h1 className='text-xl font-bold'><span className="text-blue-500">Task</span>Master</h1>
           </Link>
-          <Link to='/about' className='text-gray-900 hover:text-blue-500'>
-            <li>About</li>
-          </Link>
-          <Link to='/profile'>
+          <ul className='flex gap-4'>
+            <Link to='/' className='text-gray-900 hover:text-blue-500'>
+              <li>Home</li>
+            </Link>
+            <Link to='/about' className='text-gray-900 hover:text-blue-500'>
+              <li>About</li>
+            </Link>
             {currentUser ? (
-              <img src={currentUser.profilePicture} alt='profile' className='h-8 w-8 rounded-full object-cover hover:ring-2 hover:ring-blue-500' />
+                <>
+                  <Link to='/tasks' className='text-gray-900 hover:text-blue-500'>
+                    <li>Tasks</li>
+                  </Link>
+                  <Link to='/profile' className='flex items-center'>
+                    <li><img src={currentUser.profilePicture} alt='profile' className='h-8 w-8 rounded-full object-cover hover:ring-2 hover:ring-blue-500' /></li>
+                  </Link>
+                </>
             ) : (
-              <li className='text-gray-900 hover:text-blue-500'>Sign In</li>
+                <Link to='/signin' className='text-gray-900 hover:text-blue-500'>
+                  <li>Sign In</li>
+                </Link>
             )}
-          </Link>
-        </ul>
+          </ul>
+        </div>
       </div>
-    </div>
   );
 }
