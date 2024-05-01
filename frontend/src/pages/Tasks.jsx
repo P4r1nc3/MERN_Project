@@ -76,10 +76,10 @@ const Tasks = () => {
     return (
         <div className="max-w-screen-lg mx-auto p-4 font-sans">
             <ToastContainer />
-            <div className="text-center">
+            <div className="text-center mb-4">
                 <h1 className="text-2xl font-bold">Tasks</h1>
             </div>
-            <div className="flex flex-wrap gap-4">
+            <div className="flex flex-wrap gap-4 justify-center">
                 {tasks.map(task => (
                     <div key={task._id} className="bg-gray-200 text-black p-4 rounded-md w-72 relative">
                         <div className="mb-4">{task.description}</div>
