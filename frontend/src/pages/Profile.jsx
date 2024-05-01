@@ -162,18 +162,18 @@ export default function Profile() {
           className='bg-slate-100 rounded-lg p-3'
           onChange={handleChange}
         />
-        <button className='bg-slate-700 text-white p-3 rounded-lg uppercase hover:opacity-95 disabled:opacity-80'>
+        <button className='bg-blue-500 text-white p-3 rounded-lg uppercase hover:opacity-95 disabled:opacity-80'>
           {loading ? 'Loading...' : 'Update'}
         </button>
       </form>
       <div className='flex justify-between mt-5'>
         <span
           onClick={handleDeleteAccount}
-          className='text-red-700 cursor-pointer'
+          className='text-red-600 cursor-pointer'
         >
           Delete Account
         </span>
-        <span onClick={handleSignOut} className='text-red-700 cursor-pointer'>
+        <span onClick={handleSignOut} className='text-red-600 cursor-pointer'>
           Sign out
         </span>
       </div>
