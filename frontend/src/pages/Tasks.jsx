@@ -33,10 +33,7 @@ const Tasks = () => {
             <div className="flex flex-wrap gap-4">
                 {tasks.map(task => (
                     <div key={task._id} className="bg-gray-200 text-black p-4 rounded-md w-72 relative">
-                        <p>{task.description}</p>
-                        <div className="absolute bottom-4 left-4 bg-gray-300 text-black px-3 py-1 rounded-md text-sm">
-                            {task.date ? `Due: ${new Date(task.date).toLocaleDateString()}` : 'Incomplete'}
-                        </div>
+                        <div className="mb-4">{task.description}</div>
                         <div className="absolute bottom-4 right-4 flex gap-2">
                             <FiEdit />
                             <AiOutlineDelete />
