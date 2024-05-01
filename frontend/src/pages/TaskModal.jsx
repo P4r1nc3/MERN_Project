@@ -8,7 +8,8 @@ const TaskModal = ({ isOpen, onClose, onSubmit, task }) => {
     useEffect(() => {
         if (task) {
             setDescription(task.description);
-            setDueTo(task.dueTo || '');
+            const formattedDueDate = task.dueTo ? new Date(task.dueTo).toISOString().split('T')[0] : '';
+            setDueTo(formattedDueDate);
             setPriority(task.priority || 'medium');
         } else {
             setDescription('');
@@ -36,7 +37,7 @@ const TaskModal = ({ isOpen, onClose, onSubmit, task }) => {
                             type="text"
                             value={description}
                             onChange={(e) => setDescription(e.target.value)}
-                            className="h-10bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                            className="h-10 bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                             placeholder="Describe the task"
                             required
                         />
@@ -58,7 +59,7 @@ const TaskModal = ({ isOpen, onClose, onSubmit, task }) => {
                             id="priority"
                             value={priority}
                             onChange={(e) => setPriority(e.target.value)}
-                            className="h-10 input-style bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full"
+                            className="h-10 bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full"
                         >
                             <option value="low">Low</option>
                             <option value="medium">Medium</option>
