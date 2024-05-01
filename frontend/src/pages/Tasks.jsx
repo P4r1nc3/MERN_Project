@@ -66,8 +66,8 @@ const Tasks = () => {
                     <div key={task._id} className="bg-gray-200 text-black p-4 rounded-md w-72 relative">
                         <div className="mb-4">{task.description}</div>
                         <div className="absolute bottom-4 right-4 flex gap-2">
-                            <FiEdit onClick={() => handleEdit(task)} />
-                            <AiOutlineDelete onClick={() => handleDelete(task._id)} />
+                            <FiEdit className="cursor-pointer" onClick={() => handleEdit(task)} />
+                            <AiOutlineDelete className="cursor-pointer" onClick={() => handleDelete(task._id)} />
                         </div>
                     </div>
                 ))}
