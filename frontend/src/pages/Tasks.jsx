@@ -3,6 +3,8 @@ import axios from 'axios';
 import TaskModal from './TaskModal';
 import { FiEdit } from 'react-icons/fi';
 import { AiOutlineDelete } from 'react-icons/ai';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Tasks = () => {
     const [tasks, setTasks] = useState([]);
@@ -28,6 +30,18 @@ const Tasks = () => {
         setModalOpen(true);
     };
 
+    const handleToast = (message, type = "info") => {
+        toast[type](message, {
+            position: "bottom-right",
+            autoClose: 1500,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+        });
+    }
+
     const handleSubmit = task => {
         const method = task._id ? 'put' : 'post';
         const url = task._id ? `http://localhost:3000/api/tasks/${task._id}` : 'http://localhost:3000/api/tasks/';
@@ -35,6 +49,8 @@ const Tasks = () => {
         axios[method](url, { description: task.description }, {
             withCredentials: true
         }).then(response => {
+            const message = task._id ? "Task updated successfully." : "Task added successfully.";
+            handleToast(message, "success");
             if (task._id) {
                 setTasks(tasks.map(t => t._id === response.data._id ? response.data : t));
             } else {
@@ -49,15 +65,17 @@ const Tasks = () => {
             withCredentials: true
         })
             .then(() => {
-                setTasks(tasks.filter(task => task._id !== taskId));  // Update the state to remove the task
+                setTasks(tasks.filter(task => task._id !== taskId));
+                handleToast("Task deleted successfully.", "error");
             })
             .catch(error => {
-                setError(error.message);
+                handleToast(error.message, "error");
             });
     };
 
     return (
         <div className="max-w-screen-lg mx-auto p-4 font-sans">
+            <ToastContainer />
             <div className="text-center">
                 <h1 className="text-2xl font-bold">Tasks</h1>
             </div>
