@@ -17,7 +17,7 @@ export default function Header() {
                     <li className="flex items-center">Tasks</li>
                   </Link>
                   <Link to='/profile' className='flex items-center'>
-                    <li><img src={currentUser.profilePicture} alt='profile' className='h-8 w-8 rounded-full object-cover hover:ring-2 hover:ring-blue-500' /></li>
+                    <li><img src={currentUser.profilePicture} alt='profile' className='h-10 w-10 rounded-full object-cover hover:ring-2 hover:ring-blue-500' /></li>
                   </Link>
                 </>
             ) : (
