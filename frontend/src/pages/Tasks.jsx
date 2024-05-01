@@ -112,16 +112,6 @@ const Tasks = () => {
                     onChange={e => setSearchTerm(e.target.value)}
                     className="border border-gray-300 rounded-md px-2 py-1 mr-2"
                 />
-                <select
-                    value={priorityFilter}
-                    onChange={e => setPriorityFilter(e.target.value)}
-                    className="border border-gray-300 rounded-md px-2 py-1 mr-2"
-                >
-                    <option value="all">All Priorities</option>
-                    <option value="high">High Priority</option>
-                    <option value="medium">Medium Priority</option>
-                    <option value="low">Low Priority</option>
-                </select>
                 <div className="mr-2">
                     <DatePicker
                         selected={startDate}
@@ -133,7 +123,7 @@ const Tasks = () => {
                         className="border border-gray-300 rounded-md px-2 py-1"
                     />
                 </div>
-                <div>
+                <div className="mr-2">
                     <DatePicker
                         selected={endDate}
                         onChange={date => setEndDate(date)}
@@ -145,11 +135,21 @@ const Tasks = () => {
                         className="border border-gray-300 rounded-md px-2 py-1"
                     />
                 </div>
+                <select
+                    value={priorityFilter}
+                    onChange={e => setPriorityFilter(e.target.value)}
+                    className="border border-gray-300 rounded-md px-2 py-1"
+                >
+                    <option value="all">All Priorities</option>
+                    <option value="high">High Priority</option>
+                    <option value="medium">Medium Priority</option>
+                    <option value="low">Low Priority</option>
+                </select>
             </div>
             <div className="flex justify-center mb-4">
-                {priorityFilter !== 'all' && (
+                {searchTerm && (
                     <span className="inline-block bg-gray-200 text-gray-600 px-2 py-1 rounded-full mr-2">
-                        Priority: {priorityFilter} <button onClick={() => setPriorityFilter('all')} className="ml-1">&times;</button>
+                        Search: {searchTerm} <button onClick={() => setSearchTerm('')} className="ml-1">&times;</button>
                     </span>
                 )}
                 {startDate && (
@@ -160,6 +160,11 @@ const Tasks = () => {
                 {endDate && (
                     <span className="inline-block bg-gray-200 text-gray-600 px-2 py-1 rounded-full mr-2">
                         To: {endDate.toLocaleDateString()} <button onClick={() => setEndDate(null)} className="ml-1">&times;</button>
+                    </span>
+                )}
+                {priorityFilter !== 'all' && (
+                    <span className="inline-block bg-gray-200 text-gray-600 px-2 py-1 rounded-full mr-2">
+                        Priority: {priorityFilter} <button onClick={() => setPriorityFilter('all')} className="ml-1">&times;</button>
                     </span>
                 )}
             </div>
