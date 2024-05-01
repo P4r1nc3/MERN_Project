@@ -73,6 +73,12 @@ const Tasks = () => {
             });
     };
 
+    const formatDate = (dateString) => {
+        if (!dateString) return "-";
+        const date = new Date(dateString);
+        return `${date.getDate().toString().padStart(2, '0')}/${(date.getMonth() + 1).toString().padStart(2, '0')}/${date.getFullYear()}`;
+    };
+
     return (
         <div className="max-w-screen-lg mx-auto p-4 font-sans">
             <ToastContainer />
@@ -81,19 +87,22 @@ const Tasks = () => {
             </div>
             <div className="flex flex-wrap gap-4 justify-center">
                 {tasks.map(task => (
-                    <div key={task._id} className="bg-gray-200 text-black p-4 rounded-md w-72 relative">
-                        <div className="mb-2">{task.description}</div>
-                        <div className="mb-2">{task.dueTo}</div>
-                        <div className="mb-4">{task.priority}</div>
-                        <div className="absolute bottom-4 right-4 flex gap-2">
-                            <FiEdit className="cursor-pointer" onClick={() => handleEdit(task)} />
-                            <AiOutlineDelete className="cursor-pointer" onClick={() => handleDelete(task._id)} />
+                    <div key={task._id} className="h-600 bg-gray-100 text-black p-6 rounded-md w-80 relative shadow-lg hover:shadow-xl transition-shadow duration-300">
+                        <h3 className="text-lg font-semibold mb-1 truncate">{task.description}</h3>
+                        <p className="text-sm mb-2 text-gray-600">{formatDate(task.dueTo)}</p>
+                        <p className={`text-sm mb-4 font-medium ${task.priority === 'High' ? 'text-red-500' : task.priority === 'Medium' ? 'text-yellow-500' : 'text-green-500'}`}>
+                            {task.priority}
+                        </p>
+                        <div className="absolute bottom-4 right-4 flex gap-3">
+                            <FiEdit className="cursor-pointer text-lg hover:text-blue-500 transition-colors duration-300" onClick={() => handleEdit(task)} />
+                            <AiOutlineDelete className="cursor-pointer text-lg hover:text-red-500 transition-colors duration-300" onClick={() => handleDelete(task._id)} />
                         </div>
                     </div>
                 ))}
-                <div onClick={handleAdd} className="text-gray-400 p-4 rounded-md w-72 flex items-center justify-center cursor-pointer border-2 border-dashed border-gray-300 hover:bg-gray-100">
-                    <span className="text-4xl">+</span>
+                <div onClick={handleAdd} className="bg-gray-100 text-black p-6 rounded-md w-80 h-36 flex items-center justify-center cursor-pointer border-2 border-dashed border-gray-300 hover:bg-gray-100 shadow-lg hover:shadow-xl transition-shadow duration-300">
+                    <span className="text-4xl text-gray-400">+</span>
                 </div>
+
             </div>
             <TaskModal isOpen={modalOpen} onClose={() => setModalOpen(false)} onSubmit={handleSubmit} task={currentTask} />
         </div>
