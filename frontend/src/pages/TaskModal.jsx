@@ -1,19 +1,20 @@
 import React, { useState, useEffect } from 'react';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 
 const TaskModal = ({ isOpen, onClose, onSubmit, task }) => {
     const [description, setDescription] = useState('');
-    const [dueTo, setDueTo] = useState('');
+    const [dueTo, setDueTo] = useState(new Date());
     const [priority, setPriority] = useState('medium');
 
     useEffect(() => {
         if (task) {
             setDescription(task.description);
-            const formattedDueDate = task.dueTo ? new Date(task.dueTo).toISOString().split('T')[0] : '';
-            setDueTo(formattedDueDate);
+            setDueTo(task.dueTo ? new Date(task.dueTo) : new Date());
             setPriority(task.priority || 'medium');
         } else {
             setDescription('');
-            setDueTo('');
+            setDueTo(new Date());
             setPriority('medium');
         }
     }, [task]);
@@ -28,7 +29,7 @@ const TaskModal = ({ isOpen, onClose, onSubmit, task }) => {
                 </h2>
                 <form onSubmit={(e) => {
                     e.preventDefault();
-                    onSubmit({ ...task, description, dueTo, priority });
+                    onSubmit({ ...task, description, dueTo: dueTo.toISOString(), priority });
                 }} className="space-y-4">
                     <div>
                         <label htmlFor="description" className="block mb-2 text-sm font-medium text-gray-900">Task Description</label>
@@ -44,11 +45,10 @@ const TaskModal = ({ isOpen, onClose, onSubmit, task }) => {
                     </div>
                     <div>
                         <label htmlFor="dueTo" className="block mb-2 text-sm font-medium text-gray-900">Due Date</label>
-                        <input
-                            id="dueTo"
-                            type="date"
-                            value={dueTo}
-                            onChange={(e) => setDueTo(e.target.value)}
+                        <DatePicker
+                            selected={dueTo}
+                            onChange={(date) => setDueTo(date)}
+                            dateFormat="yyyy-MM-dd"
                             className="h-10 bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                             required
                         />
@@ -59,7 +59,7 @@ const TaskModal = ({ isOpen, onClose, onSubmit, task }) => {
                             id="priority"
                             value={priority}
                             onChange={(e) => setPriority(e.target.value)}
-                            className="h-10 bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full"
+                            className="h-10 bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-1/2"
                         >
                             <option value="low">Low</option>
                             <option value="medium">Medium</option>
