@@ -12,9 +12,11 @@ export const getTasks = async (req, res, next) => {
 
 // create task
 export const createTask = async (req, res, next) => {
-    const { description } = req.body;
+    const { description, dueTo, priority } = req.body;
     const newTask = new Task({
         description,
+        dueTo,
+        priority,
         user: req.user.id
     });
 
@@ -29,9 +31,10 @@ export const createTask = async (req, res, next) => {
 // update task
 export const updateTask = async (req, res, next) => {
     try {
+        const { description, dueTo, priority } = req.body;
         const updatedTask = await Task.findOneAndUpdate(
             { _id: req.params.id, user: req.user.id },
-            req.body,
+            { description, dueTo, priority },
             { new: true }
         );
         if (!updatedTask) {
