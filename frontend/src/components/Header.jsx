@@ -27,7 +27,7 @@ export default function Header() {
                   </Link>
                 </>
             ) : (
-                <Link to='/signin' className='text-gray-900 hover:text-blue-500'>
+                <Link to='/sign-in' className='text-gray-900 hover:text-blue-500'>
                   <li>Sign In</li>
                 </Link>
             )}
