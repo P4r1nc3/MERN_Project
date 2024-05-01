@@ -44,6 +44,18 @@ const Tasks = () => {
         });
     };
 
+    const handleDelete = taskId => {
+        axios.delete(`http://localhost:3000/api/tasks/${taskId}`, {
+            withCredentials: true
+        })
+            .then(() => {
+                setTasks(tasks.filter(task => task._id !== taskId));  // Update the state to remove the task
+            })
+            .catch(error => {
+                setError(error.message);
+            });
+    };
+
     return (
         <div className="max-w-screen-lg mx-auto p-4 font-sans">
             <div className="text-center">
@@ -55,7 +67,7 @@ const Tasks = () => {
                         <div className="mb-4">{task.description}</div>
                         <div className="absolute bottom-4 right-4 flex gap-2">
                             <FiEdit onClick={() => handleEdit(task)} />
-                            <AiOutlineDelete />
+                            <AiOutlineDelete onClick={() => handleDelete(task._id)} />
                         </div>
                     </div>
                 ))}
