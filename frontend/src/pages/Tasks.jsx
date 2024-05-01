@@ -46,7 +46,7 @@ const Tasks = () => {
             draggable: true,
             progress: undefined,
         });
-    }
+    };
 
     const handleSubmit = task => {
         const method = task._id ? 'put' : 'post';
@@ -145,6 +145,23 @@ const Tasks = () => {
                         className="border border-gray-300 rounded-md px-2 py-1"
                     />
                 </div>
+            </div>
+            <div className="flex justify-center mb-4">
+                {priorityFilter !== 'all' && (
+                    <span className="inline-block bg-gray-200 text-gray-600 px-2 py-1 rounded-full mr-2">
+                        Priority: {priorityFilter} <button onClick={() => setPriorityFilter('all')} className="ml-1">&times;</button>
+                    </span>
+                )}
+                {startDate && (
+                    <span className="inline-block bg-gray-200 text-gray-600 px-2 py-1 rounded-full mr-2">
+                        From: {startDate.toLocaleDateString()} <button onClick={() => setStartDate(null)} className="ml-1">&times;</button>
+                    </span>
+                )}
+                {endDate && (
+                    <span className="inline-block bg-gray-200 text-gray-600 px-2 py-1 rounded-full mr-2">
+                        To: {endDate.toLocaleDateString()} <button onClick={() => setEndDate(null)} className="ml-1">&times;</button>
+                    </span>
+                )}
             </div>
             <div className="flex flex-wrap gap-4 justify-center">
                 {filteredTasks.map(task => (
