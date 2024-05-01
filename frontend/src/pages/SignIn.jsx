@@ -1,12 +1,11 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { signInStart, signInSuccess, signInFailure } from '../redux/user/userSlice';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { toast, ToastContainer } from 'react-toastify';
 
 export default function SignIn() {
   const [formData, setFormData] = useState({});
-  const { loading, error } = useSelector((state) => state.user);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -76,9 +75,8 @@ export default function SignIn() {
                 </div>
                 <button
                     type="submit"
-                    disabled={loading}
                     className="w-full text-white bg-blue-400 hover:bg-blue-500 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
-                  {loading ? 'Loading...' : 'Sign In'}
+                    Sign In
                 </button>
                 <p className="text-sm font-light text-gray-500">
                   Don't have an account? <Link to="/sign-up" className="font-medium text-blue-600 hover:underline">Sign up here</Link>

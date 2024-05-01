@@ -4,8 +4,6 @@ import { toast, ToastContainer } from 'react-toastify';
 
 export default function SignUp() {
   const [formData, setFormData] = useState({ username: '', email: '', password: '' });
-  const [error, setError] = useState(false);
-  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -14,8 +12,6 @@ export default function SignUp() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true);
-    setError(false);
     try {
       const res = await fetch('/api/auth/signup', {
         method: 'POST',
@@ -25,17 +21,13 @@ export default function SignUp() {
         body: JSON.stringify(formData),
       });
       const data = await res.json();
-      setLoading(false);
       if (data.success === false) {
-        setError(true);
         toast.error('Error signing up: ' + (data.message || 'Please check your details and try again.'));
         return;
       }
       toast.success('Successfully signed up! Please sign in.');
       navigate('/sign-in');
     } catch (error) {
-      setLoading(false);
-      setError(true);
       toast.error('Network error, please try again later.');
     }
   };
@@ -88,9 +80,8 @@ export default function SignUp() {
                 </div>
                 <button
                     type="submit"
-                    disabled={loading}
                     className="w-full text-white bg-blue-400 hover:bg-blue-500 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
-                  {loading ? 'Loading...' : 'Sign Up'}
+                    Sign Up
                 </button>
                 <p className="text-sm font-light text-gray-500">
                   Already have an account? <Link to="/sign-in" className="font-medium text-blue-600 hover:underline">Sign in here</Link>
