@@ -57,3 +57,26 @@ Aplikacja składa się z dwóch głównych części: części klienckiej (fronte
 - `/delete/:id`: DELETE - Usunięcie konta użytkownika.
 
 Powyższe endpointy zostały zdefiniowane w odpowiednich plikach routingu w części serwerowej aplikacji.
+
+### Modele w bazie danych
+
+#### Task Model
+- **Opis**: Model reprezentujący zadania przechowywane w bazie danych.
+- **Pola**:
+  - `description`: Opis zadania.
+  - `completed`: Status ukończenia zadania (domyślnie ustawiony na `false`).
+  - `user`: Referencja do użytkownika, który jest właścicielem zadania.
+  - `dueTo`: Data wyznaczona na ukończenie zadania (domyślnie ustawiona na `null`).
+  - `priority`: Priorytet zadania, możliwe wartości: 'low', 'medium', 'high' (domyślnie ustawiony na `'medium'`).
+- **Opcje**: Automatyczne dodawanie znaczników czasowych (`createdAt`, `updatedAt`).
+
+#### User Model
+- **Opis**: Model reprezentujący użytkowników przechowywanych w bazie danych.
+- **Pola**:
+  - `username`: Nazwa użytkownika (unikalna).
+  - `email`: Adres e-mail użytkownika (unikalny).
+  - `password`: Hasło użytkownika.
+  - `profilePicture`: Adres URL do zdjęcia profilowego użytkownika (domyślnie ustawiony na domyślne zdjęcie profilowe).
+- **Opcje**: Automatyczne dodawanie znaczników czasowych (`createdAt`, `updatedAt`).
+
+Te modele definiują strukturę danych przechowywanych w bazie MongoDB. Są one używane przez aplikację do tworzenia, pobierania, aktualizowania i usuwania danych związanych z zadaniami i użytkownikami.
