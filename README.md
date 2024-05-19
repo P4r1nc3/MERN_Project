@@ -50,24 +50,60 @@ Aplikacja składa się z dwóch głównych części: części klienckiej (fronte
 - `/delete/:id`: DELETE - Usunięcie konta użytkownika.
 
 ## 6. Modele w bazie danych
-### 6.1. Task Model
+
+W bazie danych dla projektu TaskMaster mamy dwie główne tabele (kolekcje): `users` i `tasks`. Relacja między tymi tabelami jest typu "jeden-do-wielu", co oznacza, że jeden użytkownik może mieć wiele zadań, ale każde zadanie jest przypisane do jednego użytkownika.
+
+### 6.1 Diagram relacji
+
+```plaintext
+┌───────────────┐           ┌───────────────┐
+│    User       │           │     Task      │
+├───────────────┤           ├───────────────┤
+│ _id (PK)      │◄──────────│ _id (PK)      │
+│ username      │           │ description   │
+│ email         │           │ completed     │
+│ password      │           │ user (FK)     │
+│ profilePicture│           │ dueTo         │
+│ createdAt     │           │ priority      │
+│ updatedAt     │           │ createdAt     │
+└───────────────┘           │ updatedAt     │
+                            └───────────────┘
+```
+
+### 6.2 Opis relacji
+- Każdy dokument w kolekcji `Task` ma pole `user`, które przechowuje identyfikator `_id` użytkownika z kolekcji `User`.
+- Ta relacja umożliwia przypisanie wielu zadań do jednego użytkownika, przy czym każde zadanie jest przypisane do dokładnie jednego użytkownika.
+
+### 6.3 Wizualizacja w notacji ERD (Entity-Relationship Diagram)
+
+```plaintext
+User (1) ──────── (∞) Task
+```
+
+### 6.4 Szczegóły pól i relacji
+
+#### Task Model
 - **Opis**: Model reprezentujący zadania przechowywane w bazie danych.
 - **Pola**:
+  - `_id` (Primary Key): Unikalny identyfikator zadania.
   - `description`: Opis zadania.
-  - `completed`: Status ukończenia zadania (domyślnie ustawiony na `false`).
-  - `user`: Referencja do użytkownika, który jest właścicielem zadania.
-  - `dueTo`: Data wyznaczona na ukończenie zadania (domyślnie ustawiona na `null`).
-  - `priority`: Priorytet zadania, możliwe wartości: 'low', 'medium', 'high' (domyślnie ustawiony na `'medium'`).
-- **Opcje**: Automatyczne dodawanie znaczników czasowych (`createdAt`, `updatedAt`).
+  - `completed`: Status ukończenia zadania.
+  - `user` (Foreign Key): Odwołanie do `_id` użytkownika z kolekcji `User`, reprezentujące właściciela zadania.
+  - `dueTo`: Data wyznaczona na ukończenie zadania.
+  - `priority`: Priorytet zadania.
+  - `createdAt`: Data utworzenia rekordu.
+  - `updatedAt`: Data ostatniej aktualizacji rekordu.
 
-### 6.2. User Model
+#### User Model
 - **Opis**: Model reprezentujący użytkowników przechowywanych w bazie danych.
 - **Pola**:
-  - `username`: Nazwa użytkownika (unikalna).
-  - `email`: Adres e-mail użytkownika (unikalny).
+  - `_id` (Primary Key): Unikalny identyfikator użytkownika.
+  - `username`: Nazwa użytkownika.
+  - `email`: Adres e-mail użytkownika.
   - `password`: Hasło użytkownika.
-  - `profilePicture`: Adres URL do zdjęcia profilowego użytkownika (domyślnie ustawiony na domyślne zdjęcie profilowe).
-- **Opcje**: Automatyczne dodawanie znaczników czasowych (`createdAt`, `updatedAt`).
+  - `profilePicture`: Adres URL do zdjęcia profilowego użytkownika.
+  - `createdAt`: Data utworzenia rekordu.
+  - `updatedAt`: Data ostatniej aktualizacji rekordu.
 
 ## 7. Runbook
 
