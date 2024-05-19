@@ -25,3 +25,17 @@ TaskMaster jest narzędziem do organizacji i zarządzania zadaniami. Umożliwia 
 - Express.js: framework do tworzenia aplikacji internetowych w Node.js.
 - React.js: biblioteka JavaScript do budowania interfejsów użytkownika.
 - Node.js: środowisko uruchomieniowe JavaScript po stronie serwera.
+
+### Struktura aplikacji
+Aplikacja składa się z dwóch głównych części: części klienckiej (frontend) oraz serwerowej (backend).
+
+#### Część kliencka (frontend)
+- **Technologie**: React.js
+- **Opis**: Interfejs użytkownika aplikacji, zaimplementowany przy użyciu biblioteki React.js.
+- **Lokalizacja**: Pliki związane z częścią kliencką znajdują się w folderze `frontend`.
+
+#### Część serwerowa (backend)
+- **Technologie**: Node.js, Express.js
+- **Opis**: Serwer obsługujący logikę biznesową oraz komunikację z bazą danych.
+- **Lokalizacja**: Pliki związane z częścią serwerową znajdują się w folderze `backend`.
+
