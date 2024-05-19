@@ -39,3 +39,21 @@ Aplikacja składa się z dwóch głównych części: części klienckiej (fronte
 - **Opis**: Serwer obsługujący logikę biznesową oraz komunikację z bazą danych.
 - **Lokalizacja**: Pliki związane z częścią serwerową znajdują się w folderze `backend`.
 
+### Endpointy
+#### Auth Routes (ścieżki uwierzytelniania)
+- `/signup`: POST - Tworzenie nowego konta użytkownika.
+- `/signin`: POST - Logowanie użytkownika.
+- `/signout`: GET - Wylogowanie użytkownika.
+
+#### Task Routes (ścieżki związane z zadaniami)
+- `/`: GET - Pobieranie zadań użytkownika.
+- `/`: POST - Tworzenie nowego zadania.
+- `/:id`: PUT - Aktualizacja istniejącego zadania.
+- `/:id`: DELETE - Usunięcie istniejącego zadania.
+
+#### User Routes (ścieżki związane z użytkownikami)
+- `/`: GET - Testowanie działania API.
+- `/update/:id`: POST - Aktualizacja danych użytkownika.
+- `/delete/:id`: DELETE - Usunięcie konta użytkownika.
+
+Powyższe endpointy zostały zdefiniowane w odpowiednich plikach routingu w części serwerowej aplikacji.
