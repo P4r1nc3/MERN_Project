@@ -19,3 +19,9 @@ TaskMaster jest narzędziem do organizacji i zarządzania zadaniami. Umożliwia 
 7. **Filtrowanie i wyszukiwanie tasków**: Funkcja pozwalająca użytkownikom filtrować lub wyszukiwać zadania według różnych kryteriów, ułatwiając zarządzanie nimi.
 
 8. **Usuwanie tasków**: Możliwość usuwania zadań, które zostały wykonane lub nie są już potrzebne.
+
+### Użyte technologie (Stack MERN)
+- MongoDB: baza danych NoSQL do przechowywania danych aplikacji.
+- Express.js: framework do tworzenia aplikacji internetowych w Node.js.
+- React.js: biblioteka JavaScript do budowania interfejsów użytkownika.
+- Node.js: środowisko uruchomieniowe JavaScript po stronie serwera.
