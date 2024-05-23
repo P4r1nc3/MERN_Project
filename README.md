@@ -226,7 +226,7 @@ VITE_FIREBASE_API_KEY=<YOUR_FIREBASE_API_KEY>
 ### Wyjaśnienie zmiennych:
 - `MONGO`: String połączeniowy do bazy danych MongoDB.
 - `JWT_SECRET`: Klucz tajny używany do podpisywania tokenów JWT.
-- `VITE_FIREBASE_API_KEY`: Klucz API używany do integracji z Firebase (jeśli jest używany w projekcie).
+- `VITE_FIREBASE_API_KEY`: Klucz API używany do integracji z Firebase.
 
 ## 7. Przyszłe rozszerzenia
 - **Integracja z kalendarzem**: Możliwość integracji z popularnymi usługami kalendarza, aby automatycznie synchronizować zadania.
