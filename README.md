@@ -191,30 +191,29 @@ Ta architektura zapewnia skalowalność, bezpieczeństwo i łatwość utrzymania
 ## 6. Wiremocki
 Poniżej znajdują się wiremocki (makiety) przedstawiające kluczowe strony i funkcje aplikacji TaskMaster. Pozwolą one na lepsze zrozumienie wyglądu i interakcji użytkownika z aplikacją.
 
-#### Landing Page
+### Landing Page
+Strona główna aplikacji TaskMaster, która zachęca nowych użytkowników do założenia konta lub zalogowania się. Na stronie znajduje się przycisk "Get Started", który prowadzi do formularza rejestracji.
+<img width="1552" alt="landing" src="https://github.com/P4r1nc3/MERN_Project/assets/51295585/b25f1768-1436-4766-9a93-bb00289b8d84">
 
+### Sign Up
+Formularz rejestracji nowego użytkownika. Umożliwia użytkownikom wprowadzenie nazwy użytkownika, adresu e-mail i hasła, a następnie utworzenie nowego konta.
+<img width="1552" alt="signup" src="https://github.com/P4r1nc3/MERN_Project/assets/51295585/c44ec22c-5c20-4d9e-9e36-4be9849db876">
 
-**Opis**: Strona główna aplikacji TaskMaster, która zachęca nowych użytkowników do założenia konta lub zalogowania się. Na stronie znajduje się przycisk "Get Started", który prowadzi do formularza rejestracji.
+### Sign In
+Formularz logowania istniejącego użytkownika. Użytkownicy mogą wprowadzić swój adres e-mail i hasło, aby zalogować się na swoje konto.
+<img width="1552" alt="signin" src="https://github.com/P4r1nc3/MERN_Project/assets/51295585/6bf7492c-5527-4fed-a6c4-766ae0e63b84">
 
-#### Sign Up
+### Tasks
+Strona z listą zadań użytkownika. Umożliwia przeglądanie wszystkich zadań, filtrowanie ich według daty i priorytetu oraz zarządzanie zadaniami poprzez edycję lub usuwanie.
+<img width="1552" alt="tasks" src="https://github.com/P4r1nc3/MERN_Project/assets/51295585/982e6b1c-a392-4930-b09f-69568433e2b4">
 
-**Opis**: Formularz rejestracji nowego użytkownika. Umożliwia użytkownikom wprowadzenie nazwy użytkownika, adresu e-mail i hasła, a następnie utworzenie nowego konta.
+### Add Task
+Formularz dodawania nowego zadania. Użytkownicy mogą wprowadzić opis zadania, ustawić datę ukończenia oraz priorytet zadania. Formularz zawiera przyciski do zapisywania lub anulowania nowego zadania.
+<img width="1552" alt="addtask" src="https://github.com/P4r1nc3/MERN_Project/assets/51295585/0ca6b963-ed0a-4420-87e9-567758cd6e2d">
 
-#### Sign In
-
-**Opis**: Formularz logowania istniejącego użytkownika. Użytkownicy mogą wprowadzić swój adres e-mail i hasło, aby zalogować się na swoje konto.
-
-#### Tasks
-
-**Opis**: Strona z listą zadań użytkownika. Umożliwia przeglądanie wszystkich zadań, filtrowanie ich według daty i priorytetu oraz zarządzanie zadaniami poprzez edycję lub usuwanie.
-
-#### Add Task
-
-**Opis**: Formularz dodawania nowego zadania. Użytkownicy mogą wprowadzić opis zadania, ustawić datę ukończenia oraz priorytet zadania. Formularz zawiera przyciski do zapisywania lub anulowania nowego zadania.
-
-#### Profile
-
-**Opis**: Strona profilu użytkownika, na której można edytować dane osobowe, takie jak nazwa użytkownika, adres e-mail i hasło. Umożliwia również usunięcie konta użytkownika lub wylogowanie się z aplikacji.
+### Profile
+Strona profilu użytkownika, na której można edytować dane osobowe, takie jak nazwa użytkownika, adres e-mail i hasło. Umożliwia również usunięcie konta użytkownika lub wylogowanie się z aplikacji.
+<img width="1552" alt="profile" src="https://github.com/P4r1nc3/MERN_Project/assets/51295585/b13252d6-fce0-46f5-ac90-2a52df283759">
 
 ## 7. Runbook
 
