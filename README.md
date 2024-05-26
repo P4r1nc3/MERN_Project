@@ -188,9 +188,36 @@ Ta architektura zapewnia skalowalność, bezpieczeństwo i łatwość utrzymania
 - `/update/:id`: POST - Aktualizacja danych użytkownika.
 - `/delete/:id`: DELETE - Usunięcie konta użytkownika.
 
-## 6. Runbook
+## 6. Wiremocki
+Poniżej znajdują się wiremocki (makiety) przedstawiające kluczowe strony i funkcje aplikacji TaskMaster. Pozwolą one na lepsze zrozumienie wyglądu i interakcji użytkownika z aplikacją.
 
-### 6.1 Instalacja i uruchomienie
+### Landing Page
+Strona główna aplikacji TaskMaster, która zachęca nowych użytkowników do założenia konta lub zalogowania się. Na stronie znajduje się przycisk "Get Started", który prowadzi do formularza rejestracji.
+<img width="1552" alt="landing" src="https://github.com/P4r1nc3/MERN_Project/assets/51295585/b25f1768-1436-4766-9a93-bb00289b8d84">
+
+### Sign Up
+Formularz rejestracji nowego użytkownika. Umożliwia użytkownikom wprowadzenie nazwy użytkownika, adresu e-mail i hasła, a następnie utworzenie nowego konta.
+<img width="1552" alt="signup" src="https://github.com/P4r1nc3/MERN_Project/assets/51295585/c44ec22c-5c20-4d9e-9e36-4be9849db876">
+
+### Sign In
+Formularz logowania istniejącego użytkownika. Użytkownicy mogą wprowadzić swój adres e-mail i hasło, aby zalogować się na swoje konto.
+<img width="1552" alt="signin" src="https://github.com/P4r1nc3/MERN_Project/assets/51295585/6bf7492c-5527-4fed-a6c4-766ae0e63b84">
+
+### Tasks
+Strona z listą zadań użytkownika. Umożliwia przeglądanie wszystkich zadań, filtrowanie ich według daty i priorytetu oraz zarządzanie zadaniami poprzez edycję lub usuwanie.
+<img width="1552" alt="tasks" src="https://github.com/P4r1nc3/MERN_Project/assets/51295585/982e6b1c-a392-4930-b09f-69568433e2b4">
+
+### Add Task
+Formularz dodawania nowego zadania. Użytkownicy mogą wprowadzić opis zadania, ustawić datę ukończenia oraz priorytet zadania. Formularz zawiera przyciski do zapisywania lub anulowania nowego zadania.
+<img width="1552" alt="addtask" src="https://github.com/P4r1nc3/MERN_Project/assets/51295585/0ca6b963-ed0a-4420-87e9-567758cd6e2d">
+
+### Profile
+Strona profilu użytkownika, na której można edytować dane osobowe, takie jak nazwa użytkownika, adres e-mail i hasło. Umożliwia również usunięcie konta użytkownika lub wylogowanie się z aplikacji.
+<img width="1552" alt="profile" src="https://github.com/P4r1nc3/MERN_Project/assets/51295585/b13252d6-fce0-46f5-ac90-2a52df283759">
+
+## 7. Runbook
+
+### 7.1 Instalacja i uruchomienie
 1. **Klonowanie repozytorium**:
    ```bash
    git clone https://github.com/P4r1nc3/MERN_Project
@@ -214,7 +241,7 @@ Ta architektura zapewnia skalowalność, bezpieczeństwo i łatwość utrzymania
     npm start
     ```
 
-### 6.2. Plik konfiguracyjny .env
+### 7.2. Plik konfiguracyjny .env
 Aby aplikacja działała poprawnie, należy skonfigurować plik `.env` z odpowiednimi zmiennymi środowiskowymi. Przykład pliku `.env` dla projektu TaskMaster:
 
 ```plaintext
@@ -228,18 +255,18 @@ VITE_FIREBASE_API_KEY=<YOUR_FIREBASE_API_KEY>
 - `JWT_SECRET`: Klucz tajny używany do podpisywania tokenów JWT.
 - `VITE_FIREBASE_API_KEY`: Klucz API używany do integracji z Firebase.
 
-## 7. Przyszłe rozszerzenia
+## 8. Przyszłe rozszerzenia
 - **Integracja z kalendarzem**: Możliwość integracji z popularnymi usługami kalendarza, aby automatycznie synchronizować zadania.
 - **Powiadomienia**: Implementacja powiadomień push, aby informować użytkowników o nadchodzących zadaniach.
 
-## 8. Licencja
+## 9. Licencja
 
 Projekt TaskMaster jest udostępniany na licencji MIT.
 
 ```plaintext
 MIT License
 
-Copyright (c) 2024 [Your Name]
+Copyright (c) 2024 TaskMaster
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -259,5 +286,3 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ```
-
-Powyższa licencja umożliwia dowolne wykorzystanie, modyfikowanie i rozpowszechnianie kodu projektu TaskMaster pod warunkiem dołączenia do każdej kopii lub jej znacznych części powyższego tekstu licencyjnego.
